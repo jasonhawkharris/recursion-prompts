@@ -34,26 +34,17 @@ var sum = function (array) {
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function (array) {
-    var copy = [...new Array(array)];
+    var copy = [...new Array(array)].flat(100);
 
-    while (copy.some(item => Array.isArray(item))) {
-        copy = copy.flat();
-    }
-    console.log(copy);
-
-    if (array.length === 0) {
+    if (copy.length === 0) {
         return 0;
-    } else if (array.length === 1) {
-        return array[0];
+    } else if (copy.length === 1) {
+        return copy[0];
     }
 
     var last = copy.length - 1;
     return copy[last] + arraySum(copy.slice(0, last));
 };
-
-arraySum([[12, [[34], [56]], 78]]);
-arraySum([[-12, [[-34], [-56]], -78]]);
-arraySum([[-12, [[34], [-56]], 78]]);
 
 // 4. Check if a number is even.
 var isEven = function (n) {
