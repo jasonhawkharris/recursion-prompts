@@ -126,6 +126,14 @@ var range = function (x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function (base, exp) {
+    if (exp === 0) {
+        console.log('shouldn\'t get here')
+        return 1;
+    } else if (exp > 0) {
+        return base * exponent(base, exp - 1);
+    } else if (exp < 0) {
+        return (1 / (base * exponent(base, exp + 1)));
+    }
 };
 
 // 8. Determine if a number is a power of two.
@@ -137,11 +145,46 @@ var powerOfTwo = function (n) {
 
 // 9. Write a function that reverses a string.
 var reverse = function (string) {
+    var arr = string.split('');
+
+    if (arr.length === 1) {
+        return arr.pop();
+    }
+
+    return arr.pop() + reverse(arr.join(''));
 };
+
+
+
+
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function (string) {
+    var arr = string.toLowerCase()
+        .split(' ')
+        .join('')
+        .split('');
+
+    var first = arr[0];
+    var last = arr[arr.length - 1];
+    var len = arr.length;
+
+    if (!(len === 1 || len === 0)) {
+        if (first === last) {
+            arr.pop();
+            arr.shift();
+            palindrome(arr.join(''));
+        } else {
+            return false;
+        }
+    }
+
+    return true;
 };
+
+
+
+
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
