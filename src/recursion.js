@@ -207,8 +207,43 @@ var modulo = function (x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function (x, y) {
+    if (x < 0 && y < 0) {
+        x = -x;
+        y = -y;
+    } else if (y < 0) {
+        return 0 - x + multiply(x, y + 1);
+    }
 
+    if (y === 0 || x === 0) {
+        return 0;
+    } else if (y === 1) {
+        return x;
+    }
+
+    return x + multiply(x, y - 1)
 };
+
+var tester = function (x, y) {
+    if (x < 0) {
+        x = 0 - x;
+    }
+    console.log(x, y);
+}
+
+console.log(tester(-2, 2)); // 2, -2
+
+
+
+// if (num1 == 0 || num2 == 0) {
+//     return 0;
+// }
+
+// else if (num2 < 0) {
+//     return - num1 + multiply2(num1, num2 + 1);
+// }
+
+// else {
+//     return num1 + multiply2(num1, num2 - 1);
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
