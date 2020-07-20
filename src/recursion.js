@@ -263,16 +263,41 @@ var gcd = function (x, y) {
     return gcd(tiny, tall % tiny);
 };
 
+
+
+
+
 // 15. Write a function that compares each character of two strings and returns true if
 // both are identical.
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
 var compareStr = function (str1, str2) {
+    if (str1 === '' && str2 === '') {
+        return true;
+    }
+
+    var arr1 = str1.split('');
+    var arr2 = str2.split('');
+    var frag1 = arr1.pop();
+    var frag2 = arr2.pop();
+
+    if (frag1 === frag2) {
+        var strA = arr1.join('');
+        var strB = arr2.join('');
+        return compareStr(strA, strB);
+    } else {
+        return false;
+    }
 };
+
+
+
+
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function (str) {
+    var len = str.length;
 };
 
 // 17. Reverse the order of an array
