@@ -223,32 +223,23 @@ var multiply = function (x, y) {
     return x + multiply(x, y - 1)
 };
 
-var tester = function (x, y) {
-    if (x < 0) {
-        x = 0 - x;
-    }
-    console.log(x, y);
-}
 
-console.log(tester(-2, 2)); // 2, -2
-
-
-
-// if (num1 == 0 || num2 == 0) {
-//     return 0;
-// }
-
-// else if (num2 < 0) {
-//     return - num1 + multiply2(num1, num2 + 1);
-// }
-
-// else {
-//     return num1 + multiply2(num1, num2 - 1);
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
 var divide = function (x, y) {
+    var div = x - y;
+
+    if (div === x) return NaN;
+    if (x < y) return 0;
+    if (x < 0 && y < 0) return 0;
+    if (y === 1) return x;
+    if (y + y > div) return 2;
+
+    return 1 + divide(div, y);
 };
+
+console.log(divide(12, 3));
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
 // integers is the greatest integer that divides both x and y with no remainder.
