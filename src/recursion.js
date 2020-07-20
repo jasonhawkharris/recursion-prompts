@@ -140,7 +140,21 @@ var exponent = function (base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function (n) {
+    if (n === 1) return true;
+    if (n === 0) return false;
+
+    var check = n / 2;
+
+    if (check * check === n) {
+        return true;
+    } else if (check < 1) {
+        return false;
+    }
+
+    return powerOfTwo(check);
 };
+
+console.log(powerOfTwo(0));
 
 // 9. Write a function that reverses a string.
 var reverse = function (string) {
@@ -284,11 +298,15 @@ var compareStr = function (str1, str2) {
     if (frag1 === frag2) {
         var strA = arr1.join('');
         var strB = arr2.join('');
+        // for some reason this is showing up as only being called one time. It's a bug, fix it.
+        console.log('called');
         return compareStr(strA, strB);
-    } else {
-        return false;
     }
+
+    return false;
 };
+
+console.log(compareStr('house', 'houses'));
 
 
 
@@ -297,7 +315,7 @@ var compareStr = function (str1, str2) {
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function (str) {
-    var len = str.length;
+
 };
 
 // 17. Reverse the order of an array
