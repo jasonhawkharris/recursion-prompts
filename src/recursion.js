@@ -127,7 +127,6 @@ var range = function (x, y) {
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function (base, exp) {
     if (exp === 0) {
-        console.log('shouldn\'t get here')
         return 1;
     } else if (exp > 0) {
         return base * exponent(base, exp - 1);
@@ -191,12 +190,24 @@ var palindrome = function (string) {
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
+
 var modulo = function (x, y) {
-};
+    if (y === 0) return NaN;
+    if (y < 0) return modulo(x, -y);
+    if (x < 0) return 0 - modulo(-x, y);
+    if (x < y) return x;
+
+    return modulo(x - y, y);
+}
+
+
+
+
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function (x, y) {
+
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
