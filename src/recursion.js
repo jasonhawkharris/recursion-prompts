@@ -79,11 +79,11 @@ var sumBelow = function (n) {
     var array = [];
 
     if (n < 0) {
-        for (let i = -1; i > n; i--) {
+        for (var i = -1; i > n; i--) {
             array.push(i);
         }
     } else if (n > 0) {
-        for (let i = 1; i < n; i++) {
+        for (var i = 1; i < n; i++) {
             array.push(i);
         }
     }
@@ -94,7 +94,7 @@ var sumBelow = function (n) {
         return array[0];
     }
 
-    let last = array.length - 1;
+    var last = array.length - 1;
     return array[last] + sumBelow(array[last]);
 };
 
@@ -135,6 +135,10 @@ var exponent = function (base, exp) {
     }
 };
 
+
+
+
+
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
@@ -154,7 +158,10 @@ var powerOfTwo = function (n) {
     return powerOfTwo(check);
 };
 
-console.log(powerOfTwo(0));
+
+
+
+
 
 // 9. Write a function that reverses a string.
 var reverse = function (string) {
@@ -306,7 +313,6 @@ var compareStr = function (str1, str2) {
     return false;
 };
 
-console.log(compareStr('house', 'houses'));
 
 
 
@@ -315,18 +321,47 @@ console.log(compareStr('house', 'houses'));
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function (str) {
+    if (str.length === 1) {
+        return [str];
+    }
 
+    var last = str.substring(str.length - 1);
+    var frac = str.substring(0, str.length - 1);
+
+    if (frac.length === 0) {
+        console.log(last);
+        return last;
+    }
+
+    return [createArray(frac), last].flat(100);
 };
+
+
+
 
 // 17. Reverse the order of an array
 var reverseArr = function (array) {
+    var len = array.length;
+    if (len === 1) {
+        return array[0];
+    }
+
+    return [array.pop(), reverseArr(array)].flat(100);
 };
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function (value, length) {
+    if (length === 0) return [];
+    var list = buildList(value, length - 1);
+    list.push(value);
+    return list;
 };
+
+
+
+
 
 // 19. Implement FizzBuzz. Given integer n, return an array of the string representations of 1 to n.
 // For multiples of three, output 'Fizz' instead of the number.
@@ -334,6 +369,20 @@ var buildList = function (value, length) {
 // For numbers which are multiples of both three and five, output “FizzBuzz” instead of the number.
 // fizzBuzz(5) // ['1','2','Fizz','4','Buzz']
 var fizzBuzz = function (n) {
+    if (n === 0) return [];
+    var fizzyBuzzy = fizzBuzz(n - 1);
+
+    if (n % 3 === 0 && n % 5 === 0) {
+        fizzyBuzzy.push('FizzBuzz');
+    } else if (n % 3 === 0) {
+        fizzyBuzzy.push('Fizz');
+    } else if (n % 5 === 0) {
+        fizzyBuzzy.push('Buzz');
+    } else {
+        fizzyBuzzy.push(n.toString());
+    }
+
+    return fizzyBuzzy;
 };
 
 // 20. Count the occurence of a value in a list.
