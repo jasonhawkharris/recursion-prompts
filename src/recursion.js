@@ -435,8 +435,9 @@ var replaceKeysInObj = function (obj, oldKey, newKey) {
     return obj;
 };
 
-var obj = { 'e': { 'x': 'y' }, 't': { 'r': { 'e': 'r' }, 'p': { 'y': 'r' } }, 'y': 'e' };
-console.log(replaceKeysInObj(obj, 'e', 'noobie'));
+
+
+
 
 
 // 25. Get the first n Fibonacci numbers. In the Fibonacci sequence, each subsequent
@@ -445,7 +446,17 @@ console.log(replaceKeysInObj(obj, 'e', 'noobie'));
 // fibonacci(5); // [0,1,1,2,3,5]
 // Note: The 0 is not counted.
 var fibonacci = function (n) {
+    if (n <= 0) return null;
+    if (n === 1) return [0, 1];
+    var list = fibonacci(n - 1);
+    if (list[n] !== undefined) return list[n];
+    list[n] = list[n - 1] + list[n - 2];
+    return list;
 };
+
+
+
+
 
 // 26. Return the Fibonacci number located at index n of the Fibonacci sequence.
 // [0,1,1,2,3,5,8,13,21]
@@ -453,7 +464,7 @@ var fibonacci = function (n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function (n) {
-};
+}
 
 // 27. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
