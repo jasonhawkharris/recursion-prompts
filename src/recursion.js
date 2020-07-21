@@ -394,6 +394,11 @@ var countKeysInObj = function (obj, key) {
     return count;
 };
 
+
+
+
+
+
 // 23. Write a function that counts the number of times a value occurs in an object.
 // var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
 // countValuesInObj(obj, 'r') // 2
@@ -409,8 +414,10 @@ var countValuesInObj = function (obj, value) {
     return count++;
 };
 
-var obj = { 'e': { 'x': 'y' }, 't': { 'r': { 'e': 'r' }, 'p': { 'y': 'r' } }, 'y': 'e' };
-countValuesInObj(obj, 'r') // 2
+
+
+
+
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
