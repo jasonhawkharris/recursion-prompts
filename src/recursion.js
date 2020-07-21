@@ -374,13 +374,24 @@ var rMap = function (array, callback) {
     return [res, rMap(array.slice(1), callback)].flat(100);
 };
 
-console.log(rMap([1, 2, 3], el => { return el * 2 }));
+
+
+
+
 
 // 22. Write a function that counts the number of times a key occurs in an object.
 // var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
 // countKeysInObj(obj, 'r') // 1
 // countKeysInObj(obj, 'e') // 2
 var countKeysInObj = function (obj, key) {
+    var count = 0;
+    for (var k in obj) {
+        if (k === key) count++;
+        if (obj[k] instanceof Object) {
+            count += countKeysInObj(obj[k], key);
+        }
+    }
+    return count;
 };
 
 // 23. Write a function that counts the number of times a value occurs in an object.
@@ -388,7 +399,18 @@ var countKeysInObj = function (obj, key) {
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
 var countValuesInObj = function (obj, value) {
+    var count = 0;
+    for (var k in obj) {
+        if (obj[k] === value) count++;
+        if (obj[k] instanceof Object) {
+            count += countValuesInObj(obj[k], value);
+        }
+    }
+    return count++;
 };
+
+var obj = { 'e': { 'x': 'y' }, 't': { 'r': { 'e': 'r' }, 'p': { 'y': 'r' } }, 'y': 'e' };
+countValuesInObj(obj, 'r') // 2
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
