@@ -107,15 +107,14 @@ var range = function (x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function (base, exp) {
-    if (exp === 0) {
-        return 1;
-    } else if (exp > 0) {
-        return base * exponent(base, exp - 1);
-    } else if (exp < 0) {
-        return (1 / (base * exponent(base, exp + 1)));
+    if (exp === 0) return 1;
+    if (exp < 0) {
+        exp *= -1;
+        return 1 / (base * exponent(base, exp - 1));
     }
-};
 
+    return base * exponent(base, exp - 1);
+};
 
 
 
@@ -144,8 +143,9 @@ var powerOfTwo = function (n) {
 // 9. Write a function that reverses a string.
 var reverse = function (string) {
     var arr = string.split('');
+    var len = arr.length;
 
-    if (arr.length === 1) return arr.pop()
+    if (len === 1) return arr.pop();
 
     return arr.pop() + reverse(arr.join(''));
 };
@@ -264,22 +264,9 @@ var gcd = function (x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
 var compareStr = function (str1, str2) {
-    if (str1 === '' && str2 === '') {
-        return true;
-    }
-
-    var arr1 = str1.split('');
-    var arr2 = str2.split('');
-    var frag1 = arr1.pop();
-    var frag2 = arr2.pop();
-
-    if (frag1 === frag2) {
-        var strA = arr1.join('');
-        var strB = arr2.join('');
-        return compareStr(strA, strB);
-    }
-
-    return false;
+    if (str1.length === str2.length) return true;
+    if (str1[0] !== str2[0]) return false;
+    return compareStr(str1.substring(1), str2.substring(1));
 };
 
 
@@ -290,17 +277,12 @@ var compareStr = function (str1, str2) {
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function (str) {
-    if (str.length === 1) {
-        return [str];
-    }
+    if (str.length === 1) return [str];
 
     var last = str.substring(str.length - 1);
     var frac = str.substring(0, str.length - 1);
 
-    if (frac.length === 0) {
-        console.log(last);
-        return last;
-    }
+    if (frac.length === 0) return last;
 
     return [createArray(frac), last].flat(100);
 };
@@ -365,15 +347,20 @@ var fizzBuzz = function (n) {
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 var countOccurrence = function (array, value) {
-    if (array === []) return 0;
-    var last = array.pop();
+    if (array.length === 0) return 0;
 
+    var last = array.pop();
     if (last === value) {
-        return 1 + countOccurrence(array, last);
+        return 1 + countOccurrence(array, value);
     }
+
+    return 0 + countOccurrence(array, value);
 };
 
-console.log(countOccurrence([2, 7, 4, 4, 1, 4], 4));
+
+
+
+
 
 // 21. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
