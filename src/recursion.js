@@ -7,13 +7,8 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function (n) {
-    if (n < 0) {
-        return null;
-    }
-
-    if (n === 0) {
-        return 1;
-    }
+    if (n < 0) return null;
+    if (n === 0) return 1;
 
     return (n * factorial(n - 1));
 };
@@ -24,13 +19,10 @@ var factorial = function (n) {
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function (array) {
-    if (array.length === 0) {
-        return 0;
-    } else if (array.length === 1) {
-        return array[0];
-    }
+    if (array.length === 0) return 0;
+    if (array.length === 1) return array[0];
 
-    let last = array.length - 1;
+    var last = array.length - 1;
     return array[last] + sum(array.slice(0, last));
 };
 
@@ -42,11 +34,8 @@ var sum = function (array) {
 var arraySum = function (array) {
     var copy = [...new Array(array)].flat(100);
 
-    if (copy.length === 0) {
-        return 0;
-    } else if (copy.length === 1) {
-        return copy[0];
-    }
+    if (copy.length === 0) return 0;
+    if (copy.length === 1) return copy[0];
 
     var last = copy.length - 1;
     return copy[last] + arraySum(copy.slice(0, last));
@@ -57,15 +46,10 @@ var arraySum = function (array) {
 
 // 4. Check if a number is even.
 var isEven = function (n) {
-    if (n === 0) {
-        return true;
-    } else if (n === 1) {
-        return false;
-    }
+    if (n === 0) return true;
+    if (n === 1) return false;
+    if (n < 0) return isEven(n + 2);
 
-    if (n < 0) {
-        return isEven(n + 2);
-    }
     return isEven(n - 2);
 };
 
@@ -88,11 +72,8 @@ var sumBelow = function (n) {
         }
     }
 
-    if (array.length === 0) {
-        return 0;
-    } else if (array.length === 1) {
-        return array[0];
-    }
+    if (array.length === 0) return 0;
+    if (array.length === 1) return array[0];
 
     var last = array.length - 1;
     return array[last] + sumBelow(array[last]);
@@ -114,8 +95,8 @@ var range = function (x, y) {
     } else {
         var z = x < y ? x + 1 : x - 1;
         var array = [z, range(z, y)].flat(100);
-        return array;
     }
+    return array;
 };
 
 
@@ -149,11 +130,8 @@ var powerOfTwo = function (n) {
 
     var check = n / 2;
 
-    if (check * check === n) {
-        return true;
-    } else if (check < 1) {
-        return false;
-    }
+    if (check * check === n) return true;
+    if (check < 1) return false;
 
     return powerOfTwo(check);
 };
@@ -167,9 +145,7 @@ var powerOfTwo = function (n) {
 var reverse = function (string) {
     var arr = string.split('');
 
-    if (arr.length === 1) {
-        return arr.pop();
-    }
+    if (arr.length === 1) return arr.pop()
 
     return arr.pop() + reverse(arr.join(''));
 };
@@ -235,11 +211,8 @@ var multiply = function (x, y) {
         return 0 - x + multiply(x, y + 1);
     }
 
-    if (y === 0 || x === 0) {
-        return 0;
-    } else if (y === 1) {
-        return x;
-    }
+    if (y === 0 || x === 0) return 0;
+    if (y === 1) return x;
 
     return x + multiply(x, y - 1)
 };
@@ -277,9 +250,7 @@ var gcd = function (x, y) {
     var tiny = x <= y ? x : y;
     var tall = x >= y ? x : y;
 
-    if (tiny < 0) {
-        return null;
-    }
+    if (tiny < 0) return null;
 
     return gcd(tiny, tall % tiny);
 };
@@ -305,8 +276,6 @@ var compareStr = function (str1, str2) {
     if (frag1 === frag2) {
         var strA = arr1.join('');
         var strB = arr2.join('');
-        // for some reason this is showing up as only being called one time. It's a bug, fix it.
-        console.log('called');
         return compareStr(strA, strB);
     }
 
@@ -342,12 +311,14 @@ var createArray = function (str) {
 // 17. Reverse the order of an array
 var reverseArr = function (array) {
     var len = array.length;
-    if (len === 1) {
-        return array[0];
-    }
+    if (len === 1) return array[0];
 
     return [array.pop(), reverseArr(array)].flat(100);
 };
+
+
+
+
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
@@ -385,11 +356,24 @@ var fizzBuzz = function (n) {
     return fizzyBuzzy;
 };
 
+
+
+
+
+
 // 20. Count the occurence of a value in a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 var countOccurrence = function (array, value) {
+    if (array === []) return 0;
+    var last = array.pop();
+
+    if (last === value) {
+        return 1 + countOccurrence(array, last);
+    }
 };
+
+console.log(countOccurrence([2, 7, 4, 4, 1, 4], 4));
 
 // 21. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
