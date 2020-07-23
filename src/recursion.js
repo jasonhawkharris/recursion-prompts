@@ -474,8 +474,6 @@ var capitalizeWords = function (array) {
     return [item, capitalizeWords(array)].flat(10);
 };
 
-var words = ['i', 'am', 'learning', 'recursion'];
-console.log(capitalizeWords(words));
 
 
 
@@ -503,19 +501,34 @@ var capitalizeFirst = function (array) {
 
 
 
-console.log(capitalizeFirst(['car', 'poop', 'banana']));
 
 // 29. Return the sum of all even numbers in an object containing nested objects.
 // var obj1 = {
-//   a: 2,
-//   b: {b: 2, bb: {b: 3, bb: {b: 2}}},
-//   c: {c: {c: 2}, cc: 'ball', ccc: 5},
-//   d: 1,
-//   e: {e: {e: 2}, ee: 'car'}
+//     a: 2,
+//     b: { b: 2, bb: { b: 3, bb: { b: 2 } } },
+//     c: { c: { c: 2 }, cc: 'ball', ccc: 5 },
+//     d: 1,
+//     e: { e: { e: 2 }, ee: 'car' }
 // };
-// nestedEvenSum(obj1); // 10
+// nestedEvenSum(obj1)); // 10
 var nestedEvenSum = function (obj) {
+    var sum = 0;
+
+    for (var key in obj) {
+        if (Number.isInteger(obj[key]) && isEven(obj[key])) {
+            sum += obj[key];
+        } else if (obj[key] instanceof Object) {
+            sum += nestedEvenSum(obj[key]);
+        }
+    }
+
+    return sum;
 };
+
+
+
+
+
 
 // 30. Flatten an array containing nested arrays.
 // flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
