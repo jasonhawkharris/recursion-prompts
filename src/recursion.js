@@ -469,10 +469,13 @@ var nthFibo = function (n) {
 
 
 var capitalizeWords = function (array) {
-    if (array.length === 1) return [array.shift().toUpperCase()];
     var item = array.shift().toUpperCase();
+    if (array.length === 0) return [item];
     return [item, capitalizeWords(array)].flat(10);
 };
+
+var words = ['i', 'am', 'learning', 'recursion'];
+console.log(capitalizeWords(words));
 
 
 
