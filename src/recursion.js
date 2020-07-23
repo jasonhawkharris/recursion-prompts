@@ -464,6 +464,10 @@ var nthFibo = function (n) {
 // var words = ['i', 'am', 'learning', 'recursion'];
 // console.log(capitalizeWords(words)); // ['I', 'AM', 'LEARNING', 'RECURSION']
 
+
+
+
+
 var capitalizeWords = function (array) {
     if (array.length === 1) return [array.shift().toUpperCase()];
     var item = array.shift().toUpperCase();
@@ -472,10 +476,31 @@ var capitalizeWords = function (array) {
 
 
 
+
+
 // 28. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car','poop','banana']); // ['Car','Poop','Banana']
 var capitalizeFirst = function (array) {
+
+    var capitalize = function (word) {
+        var arr = word.split('');
+        arr[0] = arr[0].toUpperCase();
+        return arr.join('');
+    }
+
+    var cap = capitalize(array.shift());
+    var len = array.length;
+
+    if (len === 0) return [cap];
+    return [cap, capitalizeFirst(array)].flat(10);
+
 };
+
+
+
+
+
+console.log(capitalizeFirst(['car', 'poop', 'banana']));
 
 // 29. Return the sum of all even numbers in an object containing nested objects.
 // var obj1 = {
