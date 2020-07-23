@@ -446,12 +446,6 @@ var replaceKeysInObj = function (obj, oldKey, newKey) {
 // fibonacci(5); // [0,1,1,2,3,5]
 // Note: The 0 is not counted.
 var fibonacci = function (n) {
-    if (n <= 0) return null;
-    if (n === 1) return [0, 1];
-    var list = fibonacci(n - 1);
-    if (list[n] !== undefined) return list[n];
-    list[n] = list[n - 1] + list[n - 2];
-    return list;
 };
 
 
@@ -468,9 +462,15 @@ var nthFibo = function (n) {
 
 // 27. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
-// capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
+// console.log(capitalizeWords(words)); // ['I', 'AM', 'LEARNING', 'RECURSION']
+
 var capitalizeWords = function (array) {
+    if (array.length === 1) return [array.shift().toUpperCase()];
+    var item = array.shift().toUpperCase();
+    return [item, capitalizeWords(array)].flat(10);
 };
+
+
 
 // 28. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car','poop','banana']); // ['Car','Poop','Banana']
